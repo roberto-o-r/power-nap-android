@@ -12,4 +12,8 @@
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
+    <style name="Display3" parent="TextAppearance.AppCompat.Display3">
+        <item name="android:fontFamily">@font/bebasneue_regular</item>
+    </style>
+
 </resources>
