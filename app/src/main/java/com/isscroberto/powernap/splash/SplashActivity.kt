@@ -29,7 +29,12 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        // Title animation configuration.
+        // Start intro animation.
+        startAnimation()
+    }
+
+    private fun startAnimation() {
+        // Intro animation configuration.
         val valueAnimator = ValueAnimator.ofFloat(0f, 1f)
         valueAnimator.addUpdateListener {
             val value = it.animatedValue as Float
