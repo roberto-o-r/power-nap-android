@@ -8,11 +8,30 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
+    <style name="Display4" parent="TextAppearance.AppCompat.Display4">
+        <item name="android:fontFamily">@font/bebasneue_regular</item>
+    </style>
     <style name="Display3" parent="TextAppearance.AppCompat.Display3">
+        <item name="android:fontFamily">@font/bebasneue_regular</item>
+    </style>
+    <style name="Display2" parent="TextAppearance.AppCompat.Display2">
+        <item name="android:fontFamily">@font/bebasneue_regular</item>
+    </style>
+    <style name="Display1" parent="TextAppearance.AppCompat.Display1">
+        <item name="android:fontFamily">@font/bebasneue_regular</item>
+    </style>
+    <style name="Headline" parent="TextAppearance.AppCompat.Headline">
         <item name="android:fontFamily">@font/bebasneue_regular</item>
     </style>
 
