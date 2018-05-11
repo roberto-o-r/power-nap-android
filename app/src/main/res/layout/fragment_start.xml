@@ -9,16 +9,16 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/view_circle"
+        android:layout_above="@id/view_nap"
         android:layout_marginBottom="32dp"
-        android:text="Need for Power?"
+        android:text="@string/start_title"
         android:textAlignment="center"
         android:textAppearance="@style/Display2"
         android:textColor="@color/white" />
 
 
     <View
-        android:id="@+id/view_circle"
+        android:id="@+id/view_nap"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_centerInParent="true"
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="NAP!"
+        android:text="@string/start_nap_button"
         android:textAlignment="center"
         android:textAppearance="@style/Display3"
         android:textColor="@color/colorAccent" />
@@ -36,9 +36,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/view_circle"
+        android:layout_below="@id/view_nap"
         android:layout_marginTop="32dp"
-        android:text="A power nap will boost your memory, cognitive skills, creativity, and energy level."
+        android:text="@string/start_description"
         android:textAlignment="center"
         android:textAppearance="@style/Headline"
         android:textColor="@color/white" />

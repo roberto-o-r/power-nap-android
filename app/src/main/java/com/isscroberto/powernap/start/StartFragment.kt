@@ -1,6 +1,7 @@
 package com.isscroberto.powernap.start
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.isscroberto.powernap.R
+import com.isscroberto.powernap.setup.SetupActivity
+import kotlinx.android.synthetic.main.fragment_start.*
 
 /**
  * Start activity view.
@@ -27,8 +30,17 @@ class StartFragment : Fragment(), StartContract.View {
         return inflater.inflate(R.layout.fragment_start, container, false)
     }
 
-    override fun navigateToSetup() {
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        view_nap.setOnClickListener(View.OnClickListener {
+            presenter.startSession()
+        })
+    }
+
+    override fun navigateToSetup() {
+        val intent = Intent(context, SetupActivity::class.java)
+        startActivity(intent)
     }
 
     companion object {
