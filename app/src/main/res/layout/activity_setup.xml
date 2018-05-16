@@ -20,28 +20,62 @@
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
+        android:id="@+id/layout_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <!-- POWER. -->
         <LinearLayout
+            android:id="@+id/layout_power"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_logo" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            <TextView
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_logo" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="start|center_vertical"
+                    android:text="Power"
+                    android:textAppearance="@style/Display3"
+                    android:textColor="@color/power" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="start|center_vertical"
-                android:text="Power"
-                android:textAppearance="@style/Display3"
-                android:textColor="@color/power" />
+                android:background="@color/power"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="20 minutes"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/Display1"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Ideal for a boost in alertness and energy. This length limits you to the lighter stages of non-rapid eye movement (NREM) sleep, making it easier to hit the ground running after waking up."
+                    android:textAppearance="@style/Headline"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -50,24 +84,57 @@
             android:layout_height="5dp"
             android:background="@color/power" />
 
+        <!-- REFRESH. -->
         <LinearLayout
+            android:id="@+id/layout_refresh"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_refresh" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            <TextView
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_refresh" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="start|center_vertical"
+                    android:text="Refresh"
+                    android:textAppearance="@style/Display3"
+                    android:textColor="@color/refresh" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="start|center_vertical"
-                android:text="Refresh"
-                android:textAppearance="@style/Display3"
-                android:textColor="@color/refresh" />
+                android:background="@color/refresh"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="60 minutes"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/Display1"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Ideal for a boost in alertness and energy. This length limits you to the lighter stages of non-rapid eye movement (NREM) sleep, making it easier to hit the ground running after waking up."
+                    android:textAppearance="@style/Headline"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -76,24 +143,57 @@
             android:layout_height="5dp"
             android:background="@color/refresh" />
 
+        <!-- RECHARGE. -->
         <LinearLayout
+            android:id="@+id/layout_recharge"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_recharge" />
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="start|center_vertical"
-                android:text="Recharge"
-                android:textAppearance="@style/Display3"
-                android:textColor="@color/recharge" />
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_recharge" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="start|center_vertical"
+                    android:text="Recharge"
+                    android:textAppearance="@style/Display3"
+                    android:textColor="@color/recharge" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/recharge"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="90 minutes"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/Display1"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Ideal for a boost in alertness and energy. This length limits you to the lighter stages of non-rapid eye movement (NREM) sleep, making it easier to hit the ground running after waking up."
+                    android:textAppearance="@style/Headline"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -102,24 +202,58 @@
             android:layout_height="5dp"
             android:background="@color/recharge" />
 
+        <!-- Coffee. -->
         <LinearLayout
+            android:id="@+id/layout_coffee"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_coffee" />
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="start|center_vertical"
-                android:text="Coffee"
-                android:textAppearance="@style/Display3"
-                android:textColor="@color/coffee" />
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_coffee" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="start|center_vertical"
+                    android:text="Coffee"
+                    android:textAppearance="@style/Display3"
+                    android:textColor="@color/coffee" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/coffee"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="20 minutes + Coffee"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/Display1"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Ideal for a boost in alertness and energy. This length limits you to the lighter stages of non-rapid eye movement (NREM) sleep, making it easier to hit the ground running after waking up."
+                    android:textAppearance="@style/Headline"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
