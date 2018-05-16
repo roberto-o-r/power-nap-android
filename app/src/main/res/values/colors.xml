@@ -4,10 +4,10 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="power">#F0433A</color>
-    <color name="refresh">#00B2AB</color>
-    <color name="recharge">#6CD995</color>
-    <color name="coffee">#FF5233</color>
+    <color name="power">#fd003a</color>
+    <color name="refresh">#00aa88</color>
+    <color name="recharge">#428dff</color>
+    <color name="coffee">#f2b233</color>
 
     <color name="white">#FFF</color>
 
