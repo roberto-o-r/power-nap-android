@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.isscroberto.powernap.R
+import com.isscroberto.powernap.start.StartContract
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,7 +19,9 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  *
  */
-class SetupFragment : Fragment() {
+class SetupFragment : Fragment(), SetupContract.View {
+
+    override lateinit var presenter: SetupContract.Presenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
