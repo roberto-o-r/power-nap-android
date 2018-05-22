@@ -1,9 +1,10 @@
-package com.isscroberto.powernap.start
+package com.isscroberto.powernap.start.start
 
+import com.isscroberto.powernap.start.StartContract
+import com.isscroberto.powernap.start.StartPresenter
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 
@@ -19,9 +20,6 @@ class StartPresenterTest {
         // Mockito has a very convenient way to inject mocks by using the @Mock annotation. To
         // inject the mocks in the test the initMocks method needs to be called.
         MockitoAnnotations.initMocks(this)
-
-        // The presenter won't update the view unless it's active.
-        //Mockito.`when`(taskDetailView.isActive).thenReturn(true)
     }
 
     @Test
