@@ -9,11 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.isscroberto.powernap.R
+import com.isscroberto.powernap.nap.NapActivity
 import com.isscroberto.powernap.setup.SetupActivity
 import kotlinx.android.synthetic.main.fragment_start.*
 
 /**
- * Start activity view.
+ * Start fragment view.
  */
 class StartFragment : Fragment(), StartContract.View {
 
@@ -39,7 +40,7 @@ class StartFragment : Fragment(), StartContract.View {
     }
 
     override fun navigateToSetup() {
-        val intent = Intent(context, SetupActivity::class.java)
+        val intent = Intent(context, NapActivity::class.java)
         startActivity(intent)
     }
 
