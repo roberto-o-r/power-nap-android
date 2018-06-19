@@ -13,15 +13,20 @@ class SetupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setup)
 
+        // Setup ActionBar.
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        layout_power.setOnClickListener(View.OnClickListener {
-            TransitionManager.beginDelayedTransition(layout_content);
-            layout_refresh.visibility = View.GONE
-            layout_recharge.visibility = View.GONE
-            layout_coffee.visibility = View.GONE
-        })
+        // Add fragment.
+        val setupFragment = supportFragmentManager.findFragmentById(R.id.contentFrame) as SetupFragment? ?:
+        SetupFragment.newInstance().also {
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.contentFrame, it)
+            transaction.commit()
+        }
+
+        // Create the presenter
+        SetupPresenter(setupFragment)
     }
 }

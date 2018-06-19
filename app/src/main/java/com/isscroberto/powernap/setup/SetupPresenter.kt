@@ -1,9 +1,16 @@
 package com.isscroberto.powernap.setup
 
-class SetupPresenter : SetupContract.Presenter {
+class SetupPresenter(private val setupView: SetupContract.View) : SetupContract.Presenter {
+
+    init {
+        setupView.presenter = this
+    }
 
     override fun start() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun selectDescription(napType: Int) {
+        setupView.showDescription(napType)
     }
 
 }

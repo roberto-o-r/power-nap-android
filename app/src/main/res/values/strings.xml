@@ -3,7 +3,16 @@
     <string name="start_title">Need for Power?</string>
     <string name="start_nap_button">NAP!</string>
     <string name="start_description">A power nap will boost your memory, cognitive skills, creativity, and energy level.</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all_power">Power</string>
+    <string name="all_power_duration">20 minutes</string>
+    <string name="all_power_description">Ideal for a boost in alertness and energy. This length limits you to the lighter stages of non-rapid eye movement (NREM) sleep, making it easier to hit the ground running after waking up.</string>
+    <string name="all_refresh">Refresh</string>
+    <string name="all_refresh_duration">60 minutes</string>
+    <string name="all_refresh_description">This nap is best for improvement in remembering facts, faces and names. It includes slow-wave sleep, the deepest type. The downside: some grogginess upon waking up.</string>
+    <string name="all_recharge">Recharge</string>
+    <string name="all_recharge_duration">90 minutes</string>
+    <string name="all_recharge_description">This is a full cycle of sleep, meaning the lighter and deeper stages, including REM (Rapid Eye Movement). This leads to improved emotional and procedural memory and creativity. A nap of this length tipically avoids sleep inertia, making it easier to wake up.</string>
+    <string name="all_coffee">Coffee</string>
+    <string name="all_coffee_duration">20 minutes + Coffee</string>
+    <string name="all_coffee_description">A quick coffee nap is an incredible way to boost energy and productivity. You drink a cup of your favorite coffee, then immediately take a snooze. While this may seem counterintuitive, the caffeine in coffee doesn’t kick in for about 30 minutes, that short nap will clear Adenosine (what makes you feel drowsy) from your brain and when you wake those Adenosine receptors will be all set up to recieve all the caffeine. A welcome mat for your coffee.</string>
 </resources>
