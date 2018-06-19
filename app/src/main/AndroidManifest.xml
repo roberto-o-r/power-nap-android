@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".start.StartActivity"/>
+        <activity android:name=".start.StartActivity" />
         <activity
             android:name=".setup.SetupActivity"
             android:parentActivityName=".start.StartActivity">
@@ -26,6 +26,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".start.StartActivity" />
         </activity>
+        <activity android:name=".nap.NapActivity"></activity>
     </application>
 
 </manifest>
