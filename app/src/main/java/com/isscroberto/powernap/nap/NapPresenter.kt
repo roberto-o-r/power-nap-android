@@ -19,15 +19,12 @@ class NapPresenter (
     }
 
     override fun startNap() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun stopNap() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun finishNap() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }

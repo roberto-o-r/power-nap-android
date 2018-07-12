@@ -9,10 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.isscroberto.powernap.R
-import com.isscroberto.powernap.data.NAP_TYPE_COFFEE
-import com.isscroberto.powernap.data.NAP_TYPE_POWER
-import com.isscroberto.powernap.data.NAP_TYPE_RECHARGE
-import com.isscroberto.powernap.data.NAP_TYPE_REFRESH
+import com.isscroberto.powernap.data.*
 import kotlinx.android.synthetic.main.fragment_setup.*
 
 /**
@@ -38,43 +35,45 @@ class SetupFragment : Fragment(), SetupContract.View {
 
         // Set click listeners for nap types.
         layout_power.setOnClickListener(View.OnClickListener {
-            presenter.selectDescription(NAP_TYPE_POWER);
+            presenter.selectNapType(NapType.NAP_TYPE_POWER);
         })
 
         layout_refresh.setOnClickListener(View.OnClickListener {
-            presenter.selectDescription(NAP_TYPE_REFRESH);
+            presenter.selectNapType(NapType.NAP_TYPE_REFRESH);
         })
 
         layout_recharge.setOnClickListener(View.OnClickListener {
-            presenter.selectDescription(NAP_TYPE_RECHARGE);
+            presenter.selectNapType(NapType.NAP_TYPE_RECHARGE);
         })
 
         layout_coffee.setOnClickListener(View.OnClickListener {
-            presenter.selectDescription(NAP_TYPE_COFFEE);
+            presenter.selectNapType(NapType.NAP_TYPE_COFFEE);
         })
     }
 
-    override fun showDescription(napType: Int) {
+    // TODO: Handle back button to hide descriptions if available.
+
+    override fun showDescription(napType: NapType) {
 
         TransitionManager.beginDelayedTransition(layout_content);
 
         when(napType){
-            NAP_TYPE_POWER -> {
+            NapType.NAP_TYPE_POWER -> {
                 layout_refresh.visibility = View.GONE
                 layout_recharge.visibility = View.GONE
                 layout_coffee.visibility = View.GONE
             }
-            NAP_TYPE_REFRESH -> {
+            NapType.NAP_TYPE_REFRESH -> {
                 layout_power.visibility = View.GONE
                 layout_recharge.visibility = View.GONE
                 layout_coffee.visibility = View.GONE
             }
-            NAP_TYPE_RECHARGE -> {
+            NapType.NAP_TYPE_RECHARGE -> {
                 layout_power.visibility = View.GONE
                 layout_refresh.visibility = View.GONE
                 layout_coffee.visibility = View.GONE
             }
-            NAP_TYPE_COFFEE -> {
+            NapType.NAP_TYPE_COFFEE -> {
                 layout_power.visibility = View.GONE
                 layout_refresh.visibility = View.GONE
                 layout_recharge.visibility = View.GONE

@@ -19,6 +19,6 @@ class NapActivity : AppCompatActivity() {
         }
 
         // Create the presenter
-        NapPresenter(napFragment)
+        NapPresenter(napFragment, 1)
     }
 }

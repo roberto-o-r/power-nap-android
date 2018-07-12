@@ -40,7 +40,7 @@ class StartFragment : Fragment(), StartContract.View {
     }
 
     override fun navigateToSetup() {
-        val intent = Intent(context, NapActivity::class.java)
+        val intent = Intent(context, SetupActivity::class.java)
         startActivity(intent)
     }
 

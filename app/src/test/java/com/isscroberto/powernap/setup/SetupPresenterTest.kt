@@ -1,9 +1,6 @@
 package com.isscroberto.powernap.setup
 
-import com.isscroberto.powernap.data.NAP_TYPE_COFFEE
-import com.isscroberto.powernap.data.NAP_TYPE_POWER
-import com.isscroberto.powernap.data.NAP_TYPE_RECHARGE
-import com.isscroberto.powernap.data.NAP_TYPE_REFRESH
+import com.isscroberto.powernap.data.*
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
@@ -38,10 +35,13 @@ class SetupPresenterTest {
     fun clickOnTypePower_showsDescription() {
 
         // When selecting a nap type.
-        setupPresenter.selectDescription(NAP_TYPE_POWER)
+        setupPresenter.selectNapType(NapType.NAP_TYPE_POWER)
 
-        // The description of that type is showed in the view.
-        verify(setupView).showDescription(NAP_TYPE_POWER)
+        // The type is set.
+        assertTrue(setupPresenter.napType == NapType.NAP_TYPE_POWER)
+
+        // And the description of that type is showed in the view.
+        verify(setupView).showDescription(NapType.NAP_TYPE_POWER)
 
     }
 
@@ -49,10 +49,13 @@ class SetupPresenterTest {
     fun clickOnTypeRefresh_showsDescription() {
 
         // When selecting a nap type.
-        setupPresenter.selectDescription(NAP_TYPE_REFRESH)
+        setupPresenter.selectNapType(NapType.NAP_TYPE_REFRESH)
+
+        // The type is set.
+        assertTrue(setupPresenter.napType == NapType.NAP_TYPE_REFRESH)
 
         // The description of that type is showed in the view.
-        verify(setupView).showDescription(NAP_TYPE_REFRESH)
+        verify(setupView).showDescription(NapType.NAP_TYPE_REFRESH)
 
     }
 
@@ -60,10 +63,13 @@ class SetupPresenterTest {
     fun clickOnTypeRecharge_showsDescription() {
 
         // When selecting a nap type.
-        setupPresenter.selectDescription(NAP_TYPE_RECHARGE)
+        setupPresenter.selectNapType(NapType.NAP_TYPE_RECHARGE)
+
+        // The type is set.
+        assertTrue(setupPresenter.napType == NapType.NAP_TYPE_RECHARGE)
 
         // The description of that type is showed in the view.
-        verify(setupView).showDescription(NAP_TYPE_RECHARGE)
+        verify(setupView).showDescription(NapType.NAP_TYPE_RECHARGE)
 
     }
 
@@ -71,10 +77,13 @@ class SetupPresenterTest {
     fun clickOnTypeCoffee_showsDescription() {
 
         // When selecting a nap type.
-        setupPresenter.selectDescription(NAP_TYPE_COFFEE)
+        setupPresenter.selectNapType(NapType.NAP_TYPE_COFFEE)
+
+        // The type is set.
+        assertTrue(setupPresenter.napType == NapType.NAP_TYPE_COFFEE)
 
         // The description of that type is showed in the view.
-        verify(setupView).showDescription(NAP_TYPE_COFFEE)
+        verify(setupView).showDescription(NapType.NAP_TYPE_COFFEE)
 
     }
 

@@ -28,15 +28,15 @@ class NapFragment : Fragment(), NapContract.View {
     }
 
     override fun startCountdown(milliseconds: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun stopCountdown() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun goToEnd() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     companion object {
