@@ -1,6 +1,7 @@
 package com.isscroberto.powernap.setup
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.transition.TransitionManager
 import android.support.v4.app.Fragment
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 
 import com.isscroberto.powernap.R
 import com.isscroberto.powernap.data.*
+import com.isscroberto.powernap.nap.NapActivity
 import kotlinx.android.synthetic.main.fragment_setup.*
 
 /**
@@ -35,23 +37,58 @@ class SetupFragment : Fragment(), SetupContract.View {
 
         // Set click listeners for nap types.
         layout_power.setOnClickListener(View.OnClickListener {
-            presenter.selectNapType(NapType.NAP_TYPE_POWER);
+            if(presenter.napType == NapType.NULL) {
+                presenter.selectNapType(NapType.NAP_TYPE_POWER);
+            } else {
+                presenter.selectNapType(NapType.NULL);
+            }
         })
 
         layout_refresh.setOnClickListener(View.OnClickListener {
-            presenter.selectNapType(NapType.NAP_TYPE_REFRESH);
+            if(presenter.napType == NapType.NULL) {
+                presenter.selectNapType(NapType.NAP_TYPE_REFRESH);
+            } else {
+                presenter.selectNapType(NapType.NULL);
+            }
         })
 
         layout_recharge.setOnClickListener(View.OnClickListener {
-            presenter.selectNapType(NapType.NAP_TYPE_RECHARGE);
+            if(presenter.napType == NapType.NULL) {
+                presenter.selectNapType(NapType.NAP_TYPE_RECHARGE);
+            } else {
+                presenter.selectNapType(NapType.NULL);
+            }
         })
 
         layout_coffee.setOnClickListener(View.OnClickListener {
-            presenter.selectNapType(NapType.NAP_TYPE_COFFEE);
+            if(presenter.napType == NapType.NULL) {
+                presenter.selectNapType(NapType.NAP_TYPE_COFFEE);
+            } else {
+                presenter.selectNapType(NapType.NULL);
+            }
+        })
+
+        // Click listeners for nap type selections.
+        button_power.setOnClickListener(View.OnClickListener {
+            val intent = Intent(context, NapActivity::class.java)
+            startActivity(intent)
+        })
+
+        button_refresh.setOnClickListener(View.OnClickListener {
+            val intent = Intent(context, NapActivity::class.java)
+            startActivity(intent)
+        })
+
+        button_recharge.setOnClickListener(View.OnClickListener {
+            val intent = Intent(context, NapActivity::class.java)
+            startActivity(intent)
+        })
+
+        button_coffee.setOnClickListener(View.OnClickListener {
+            val intent = Intent(context, NapActivity::class.java)
+            startActivity(intent)
         })
     }
-
-    // TODO: Handle back button to hide descriptions if available.
 
     override fun showDescription(napType: NapType) {
 
@@ -77,6 +114,12 @@ class SetupFragment : Fragment(), SetupContract.View {
                 layout_power.visibility = View.GONE
                 layout_refresh.visibility = View.GONE
                 layout_recharge.visibility = View.GONE
+            }
+            NapType.NULL -> {
+                layout_power.visibility = View.VISIBLE
+                layout_refresh.visibility = View.VISIBLE
+                layout_recharge.visibility = View.VISIBLE
+                layout_coffee.visibility = View.VISIBLE
             }
         }
     }

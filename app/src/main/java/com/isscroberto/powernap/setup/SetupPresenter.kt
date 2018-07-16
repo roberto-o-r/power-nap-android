@@ -4,7 +4,7 @@ import com.isscroberto.powernap.data.NapType
 
 class SetupPresenter(private val setupView: SetupContract.View) : SetupContract.Presenter {
 
-    override lateinit var napType: NapType
+    override  var napType: NapType = NapType.NULL
 
     init {
         setupView.presenter = this
