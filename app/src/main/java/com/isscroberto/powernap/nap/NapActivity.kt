@@ -3,6 +3,7 @@ package com.isscroberto.powernap.nap
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.isscroberto.powernap.R
+import com.isscroberto.powernap.data.NapType
 
 class NapActivity : AppCompatActivity() {
 
@@ -19,6 +20,6 @@ class NapActivity : AppCompatActivity() {
         }
 
         // Create the presenter
-        NapPresenter(napFragment, 1)
+        NapPresenter(napFragment, NapType.NAP_TYPE_POWER)
     }
 }
