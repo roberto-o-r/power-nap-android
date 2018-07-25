@@ -54,4 +54,46 @@ class NapPresenterTest {
         verify(napView).startCountdown(napPresenter.REFRESH_NAP_TIME)
     }
 
+    @Test
+    fun createPresenter_startsRechargeNap() {
+        // Given a presenter initialized with Refresh type.
+        var napPresenter = NapPresenter(napView, NapType.NAP_TYPE_RECHARGE)
+
+        // When the presenter start the nap session.
+        napPresenter.startNap()
+
+        // The countdown starts.
+        verify(napView).startCountdown(napPresenter.RECHARGE_NAP_TIME)
+    }
+
+    @Test
+    fun createPresenter_startsCoffeeNap() {
+        // Given a presenter initialized with Refresh type.
+        var napPresenter = NapPresenter(napView, NapType.NAP_TYPE_COFFEE)
+
+        // When the presenter start the nap session.
+        napPresenter.startNap()
+
+        // The countdown starts.
+        verify(napView).startCountdown(napPresenter.COFFEE_NAP_TIME)
+    }
+
+    @Test
+    fun stopNap_showsSummary() {
+        // When the nap session is stopped.
+        napPresenter.stopNap()
+
+        // Then summary of the session is shown.
+        verify(napView).showSummary()
+    }
+
+    @Test
+    fun finishNap_showsSummary() {
+        // When the nap session is stopped.
+        napPresenter.finishNap()
+
+        // Then summary of the session is shown.
+        verify(napView).showStart()
+    }
+
 }

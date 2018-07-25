@@ -39,6 +39,14 @@ class NapFragment : Fragment(), NapContract.View {
 
     }
 
+    override fun showSummary() {
+
+    }
+
+    override fun showStart() {
+
+    }
+
     companion object {
         fun newInstance():NapFragment {
             return NapFragment()

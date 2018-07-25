@@ -13,6 +13,10 @@ interface NapContract {
 
         fun goToEnd()
 
+        fun showSummary()
+
+        fun showStart()
+
     }
 
     interface Presenter : BasePresenter {
