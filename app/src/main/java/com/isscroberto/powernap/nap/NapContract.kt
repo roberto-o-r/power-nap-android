@@ -11,8 +11,6 @@ interface NapContract {
 
         fun stopCountdown()
 
-        fun goToEnd()
-
         fun showSummary()
 
         fun showStart()

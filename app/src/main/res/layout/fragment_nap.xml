@@ -1,18 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nap_fragment_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".nap.NapFragment"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    tools:context=".nap.NapFragment">
 
     <TextView
+        android:id="@+id/text_countdown"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="00:00"
-        android:textColor="@color/white"
         android:textAlignment="center"
-        android:textAppearance="@style/Display4"/>
+        android:textAppearance="@style/Display4"
+        android:textColor="@color/white" />
+
+    <LinearLayout
+        android:id="@+id/layout_summary"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Wake Up!"
+            android:textAlignment="center"
+            android:textAppearance="@style/Display4"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="And\nEnjoy the Power"
+            android:textAlignment="center"
+            android:textAppearance="@style/Display3"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_logo" />
+
+    </LinearLayout>
 
 </RelativeLayout>

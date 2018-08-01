@@ -38,6 +38,7 @@ class NapPresenter (
     }
 
     override fun stopNap() {
+        napView.stopCountdown()
         napView.showSummary()
     }
 

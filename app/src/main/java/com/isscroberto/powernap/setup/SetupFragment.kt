@@ -92,7 +92,7 @@ class SetupFragment : Fragment(), SetupContract.View {
 
     override fun showDescription(napType: NapType) {
 
-        TransitionManager.beginDelayedTransition(layout_content);
+        TransitionManager.beginDelayedTransition(setup_fragment_content);
 
         when(napType){
             NapType.NAP_TYPE_POWER -> {
