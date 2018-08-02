@@ -7,9 +7,11 @@ interface NapContract {
 
     interface View : BaseView<Presenter> {
 
-        fun startCountdown(milliseconds: Int)
+        fun initTimer()
 
-        fun stopCountdown()
+        fun startTimer(milliseconds: Int)
+
+        fun stopTimer()
 
         fun showSummary()
 

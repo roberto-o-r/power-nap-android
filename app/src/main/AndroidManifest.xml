@@ -26,7 +26,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".start.StartActivity" />
         </activity>
-        <activity android:name=".nap.NapActivity"></activity>
+        <activity android:name=".nap.NapActivity" />
+
+        <receiver
+            android:name=".TimerExpiredReceiver"
+            android:enabled="true"
+            android:exported="false"></receiver>
     </application>
 
 </manifest>

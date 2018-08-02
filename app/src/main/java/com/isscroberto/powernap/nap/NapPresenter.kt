@@ -23,22 +23,22 @@ class NapPresenter (
     override fun startNap() {
         when(napType) {
             NapType.NAP_TYPE_POWER -> {
-                napView.startCountdown(POWER_NAP_TIME)
+                napView.startTimer(POWER_NAP_TIME)
             }
             NapType.NAP_TYPE_REFRESH -> {
-                napView.startCountdown(REFRESH_NAP_TIME)
+                napView.startTimer(REFRESH_NAP_TIME)
             }
             NapType.NAP_TYPE_RECHARGE -> {
-                napView.startCountdown(RECHARGE_NAP_TIME)
+                napView.startTimer(RECHARGE_NAP_TIME)
             }
             NapType.NAP_TYPE_COFFEE -> {
-                napView.startCountdown(COFFEE_NAP_TIME)
+                napView.startTimer(COFFEE_NAP_TIME)
             }
         }
     }
 
     override fun stopNap() {
-        napView.stopCountdown()
+        napView.stopTimer()
         napView.showSummary()
     }
 
