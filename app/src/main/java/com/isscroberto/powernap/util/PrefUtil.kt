@@ -44,7 +44,7 @@ class PrefUtil {
 
         private const val SECONDS_REMAINING_ID = "com.isscroberto.powernap.seconds_remaining"
 
-        fun getPSecondsRemaining(context: Context): Long {
+        fun getSecondsRemaining(context: Context): Long {
             val preferences = PreferenceManager.getDefaultSharedPreferences(context)
             return preferences.getLong(SECONDS_REMAINING_ID, 0)
         }

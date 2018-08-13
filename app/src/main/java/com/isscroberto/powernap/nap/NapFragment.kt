@@ -19,6 +19,7 @@ import com.isscroberto.powernap.TimerExpiredReceiver
 import com.isscroberto.powernap.data.NapState
 import com.isscroberto.powernap.data.NapType
 import com.isscroberto.powernap.start.StartActivity
+import com.isscroberto.powernap.util.NotificationUtil
 import com.isscroberto.powernap.util.PrefUtil
 import kotlinx.android.synthetic.main.fragment_nap.*
 import kotlinx.android.synthetic.main.fragment_setup.*
@@ -43,16 +44,19 @@ class NapFragment : Fragment(), NapContract.View {
         initTimer()
 
         removeAlarm(context)
-        // TODO: Hide notification.
+        NotificationUtil.hideTimerNotification(context)
     }
 
     override fun onPause() {
         super.onPause()
 
-        if(timerState == NapState.Running) {
+        if (timerState == NapState.Running){
             timer.cancel()
             val wakeUpTime = setAlarm(context, nowSeconds, secondsRemaining)
-            // TODO: Show notification.
+            NotificationUtil.showTimerRunning(context, wakeUpTime)
+        }
+        else if (timerState == NapState.Paused){
+            NotificationUtil.showTimerPaused(context)
         }
 
         PrefUtil.setPreviousTimerLengthSeconds(timerLengthSeconds, context)
@@ -84,7 +88,7 @@ class NapFragment : Fragment(), NapContract.View {
         }
 
         secondsRemaining = if(timerState == NapState.Running)
-            PrefUtil.getPSecondsRemaining(context)
+            PrefUtil.getSecondsRemaining(context)
         else
             timerLengthSeconds
 
@@ -98,8 +102,6 @@ class NapFragment : Fragment(), NapContract.View {
         else {
             if (timerState == NapState.Running)
                 startTimer(0)
-            else
-                onTimerFinished()
         }
 
         updateCountdownUI()
