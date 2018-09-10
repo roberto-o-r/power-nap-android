@@ -1,6 +1,7 @@
 package com.isscroberto.powernap.setup
 
 import com.isscroberto.powernap.data.NapType
+import com.isscroberto.powernap.util.PrefUtil
 
 class SetupPresenter(private val setupView: SetupContract.View) : SetupContract.Presenter {
 

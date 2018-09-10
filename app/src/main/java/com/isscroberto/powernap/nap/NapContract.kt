@@ -17,6 +17,8 @@ interface NapContract {
 
         fun showStart()
 
+        fun onTimerFinished()
+
     }
 
     interface Presenter : BasePresenter {

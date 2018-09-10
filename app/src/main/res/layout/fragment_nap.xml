@@ -17,6 +17,16 @@
         android:textAppearance="@style/Display4"
         android:textColor="@color/white" />
 
+    <TextView
+        android:id="@+id/text_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_countdown"
+        android:text="Touch to Start"
+        android:textAlignment="center"
+        android:textAppearance="@style/Display1"
+        android:textColor="@color/white" />
+
     <LinearLayout
         android:id="@+id/layout_summary"
         android:layout_width="match_parent"

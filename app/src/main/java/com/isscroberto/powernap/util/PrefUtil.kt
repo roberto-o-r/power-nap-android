@@ -3,15 +3,32 @@ package com.isscroberto.powernap.util
 import android.content.ComponentName
 import android.content.Context
 import android.preference.PreferenceManager
+import com.isscroberto.powernap.data.AppConstants
 import com.isscroberto.powernap.data.NapState
+import com.isscroberto.powernap.data.NapType
 
 class PrefUtil {
 
     companion object {
 
         fun getTimerLength(context: Context): Int {
-            // Placeholder.
-            return 1
+            val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+            val napType: NapType = NapType.fromInt(preferences.getInt(NAP_TYPE, 0)) as NapType
+            when(napType) {
+                NapType.NAP_TYPE_POWER -> return AppConstants.POWER_NAP_TIME
+                NapType.NAP_TYPE_REFRESH -> return AppConstants.REFRESH_NAP_TIME
+                NapType.NAP_TYPE_RECHARGE -> return AppConstants.RECHARGE_NAP_TIME
+                NapType.NAP_TYPE_COFFEE -> return AppConstants.COFFEE_NAP_TIME
+                else -> return 1
+            }
+        }
+
+        private const val NAP_TYPE = "com.isscroberto.powernap.nap_type";
+
+        fun setNapType(napType: NapType, context: Context) {
+            val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
+            editor.putInt(NAP_TYPE, napType.value)
+            editor.apply()
         }
 
         private const val PREVIOUS_TIMER_LENGTH_SECONDS_ID = "com.isscroberto.powernap.previous_timer_length"

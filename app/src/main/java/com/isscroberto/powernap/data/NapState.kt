@@ -1,5 +1,5 @@
 package com.isscroberto.powernap.data
 
 enum class NapState {
-    Stopped, Running, Paused
+    Stopped, Running, Finished
 }

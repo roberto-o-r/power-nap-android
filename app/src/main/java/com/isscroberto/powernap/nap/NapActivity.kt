@@ -7,12 +7,14 @@ import com.isscroberto.powernap.data.NapType
 
 class NapActivity : AppCompatActivity() {
 
+    lateinit var napFragment: NapContract.View
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nap)
 
         // Add fragment.
-        val napFragment = supportFragmentManager.findFragmentById(R.id.contentFrame) as NapFragment? ?:
+        napFragment = supportFragmentManager.findFragmentById(R.id.contentFrame) as NapFragment? ?:
         NapFragment.newInstance().also {
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.contentFrame, it)
@@ -20,6 +22,13 @@ class NapActivity : AppCompatActivity() {
         }
 
         // Create the presenter
-        NapPresenter(napFragment, NapType.NAP_TYPE_POWER)
+        NapPresenter(napFragment)
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        napFragment.onTimerFinished()
+    }
+
 }

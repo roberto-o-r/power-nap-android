@@ -1,4 +1,5 @@
 <resources>
+    <string name="CON_NAP_TYPE">com.isscroberto.powernap.naptype</string>
     <string name="app_name">Power Nap</string>
     <string name="start_title">Need for Power?</string>
     <string name="start_nap_button">NAP!</string>

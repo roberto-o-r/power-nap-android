@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import com.isscroberto.powernap.R
 import com.isscroberto.powernap.data.*
 import com.isscroberto.powernap.nap.NapActivity
+import com.isscroberto.powernap.util.PrefUtil
 import kotlinx.android.synthetic.main.fragment_setup.*
 
 /**
@@ -70,21 +71,33 @@ class SetupFragment : Fragment(), SetupContract.View {
 
         // Click listeners for nap type selections.
         button_power.setOnClickListener(View.OnClickListener {
+            // Save nap in preferences.
+            PrefUtil.setNapType(presenter.napType, context);
+
             val intent = Intent(context, NapActivity::class.java)
             startActivity(intent)
         })
 
         button_refresh.setOnClickListener(View.OnClickListener {
+            // Save nap in preferences.
+            PrefUtil.setNapType(presenter.napType, context);
+
             val intent = Intent(context, NapActivity::class.java)
             startActivity(intent)
         })
 
         button_recharge.setOnClickListener(View.OnClickListener {
+            // Save nap in preferences.
+            PrefUtil.setNapType(presenter.napType, context);
+
             val intent = Intent(context, NapActivity::class.java)
             startActivity(intent)
         })
 
         button_coffee.setOnClickListener(View.OnClickListener {
+            // Save nap in preferences.
+            PrefUtil.setNapType(presenter.napType, context);
+
             val intent = Intent(context, NapActivity::class.java)
             startActivity(intent)
         })

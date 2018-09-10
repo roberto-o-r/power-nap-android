@@ -27,15 +27,10 @@ class NotificationUtil {
         private const val TIMER_ID = 0
 
         fun showTimerExpired(context: Context) {
-            val startIntent = Intent(context, TimerNotificationActionReceiver::class.java)
-            startIntent.action = AppConstants.ACTION_START
-            val startPendingIntent = PendingIntent.getBroadcast(context, 0, startIntent, PendingIntent.FLAG_UPDATE_CURRENT)
-
             val nBuilder = getBasicNotificationBuilder(context, CHANNEL_ID_TIMER, true)
-            nBuilder.setContentTitle("Nap Finished!")
-                    .setContentText("Start again?")
+            nBuilder.setContentTitle("Nap Finished")
+                    .setContentText("Enjoy the Power!")
                     .setContentIntent(getPendingIntentWithStack(context, NapActivity::class.java))
-                    .addAction(R.drawable.baseline_play_arrow_black_48, "Start", startPendingIntent)
 
             val nManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             nManager.createNotificationChannel(CHANNEL_ID_TIMER, CHANNEL_NAME_TIMER, true)
@@ -44,16 +39,6 @@ class NotificationUtil {
         }
 
         fun showTimerRunning(context: Context, wakeUpTime: Long) {
-            val stopIntent = Intent(context, TimerNotificationActionReceiver::class.java)
-            stopIntent.action = AppConstants.ACTION_STOP
-            val stopPendingIntent = PendingIntent.getBroadcast(context,
-                    0, stopIntent, PendingIntent.FLAG_UPDATE_CURRENT)
-
-            val pauseIntent = Intent(context, TimerNotificationActionReceiver::class.java)
-            pauseIntent.action = AppConstants.ACTION_PAUSE
-            val pausePendingIntent = PendingIntent.getBroadcast(context,
-                    0, pauseIntent, PendingIntent.FLAG_UPDATE_CURRENT)
-
             val df = SimpleDateFormat.getTimeInstance(SimpleDateFormat.SHORT)
 
             val nBuilder = getBasicNotificationBuilder(context, CHANNEL_ID_TIMER, true)
@@ -61,8 +46,6 @@ class NotificationUtil {
                     .setContentText("End: ${df.format(Date(wakeUpTime))}")
                     .setContentIntent(getPendingIntentWithStack(context, NapActivity::class.java))
                     .setOngoing(true)
-                    .addAction(R.drawable.baseline_stop_black_48, "Stop", stopPendingIntent)
-                    .addAction(R.drawable.baseline_pause_black_48, "Pause", pausePendingIntent)
 
             val nManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             nManager.createNotificationChannel(CHANNEL_ID_TIMER, CHANNEL_NAME_TIMER, true)
@@ -71,17 +54,11 @@ class NotificationUtil {
         }
 
         fun showTimerPaused(context: Context){
-            val resumeIntent = Intent(context, TimerNotificationActionReceiver::class.java)
-            resumeIntent.action = AppConstants.ACTION_RESUME
-            val resumePendingIntent = PendingIntent.getBroadcast(context,
-                    0, resumeIntent, PendingIntent.FLAG_UPDATE_CURRENT)
-
             val nBuilder = getBasicNotificationBuilder(context, CHANNEL_ID_TIMER, true)
             nBuilder.setContentTitle("Timer is paused.")
                     .setContentText("Resume?")
                     .setContentIntent(getPendingIntentWithStack(context, NapActivity::class.java))
                     .setOngoing(true)
-                    .addAction(R.drawable.baseline_play_arrow_black_48, "Resume", resumePendingIntent)
 
             val nManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             nManager.createNotificationChannel(CHANNEL_ID_TIMER, CHANNEL_NAME_TIMER, true)

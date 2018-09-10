@@ -39,10 +39,14 @@ class NapFragment : Fragment(), NapContract.View {
 
     override fun onResume() {
         super.onResume()
-        //presenter.start();
 
+        // Start presenter.
+        presenter.start()
+
+        // Initialize timer.
         initTimer()
 
+        // The app is in focus, remove the alarm and notification if exists.
         removeAlarm(context)
         NotificationUtil.hideTimerNotification(context)
     }
@@ -50,22 +54,22 @@ class NapFragment : Fragment(), NapContract.View {
     override fun onPause() {
         super.onPause()
 
+        // If nap is running.
         if (timerState == NapState.Running){
+            // Cancerl de timer.
             timer.cancel()
+            // Set the alarm and notification.
             val wakeUpTime = setAlarm(context, nowSeconds, secondsRemaining)
             NotificationUtil.showTimerRunning(context, wakeUpTime)
         }
-        else if (timerState == NapState.Paused){
-            NotificationUtil.showTimerPaused(context)
-        }
 
+        // Save settings and time status.
         PrefUtil.setPreviousTimerLengthSeconds(timerLengthSeconds, context)
         PrefUtil.setSecondsRemaining(secondsRemaining, context)
         PrefUtil.setTimerState(timerState, context)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_nap, container, false)
     }
@@ -73,7 +77,7 @@ class NapFragment : Fragment(), NapContract.View {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        text_countdown.setOnClickListener(View.OnClickListener {
+        text_start.setOnClickListener(View.OnClickListener {
             startTimer(0)
         })
     }
@@ -97,7 +101,7 @@ class NapFragment : Fragment(), NapContract.View {
             secondsRemaining -= nowSeconds - alarmSetTime
         }
 
-        if(secondsRemaining <= 0)
+        if(timerState == NapState.Finished)
             onTimerFinished()
         else {
             if (timerState == NapState.Running)
@@ -108,6 +112,7 @@ class NapFragment : Fragment(), NapContract.View {
     }
 
     override fun startTimer(milliseconds: Int) {
+        text_start.visibility = View.INVISIBLE;
         timerState = NapState.Running
 
         timer = object : CountDownTimer(secondsRemaining * 1000, 1000) {
@@ -124,8 +129,9 @@ class NapFragment : Fragment(), NapContract.View {
 
     override fun stopTimer() {
         timerState = NapState.Stopped
-
-        timer.cancel()
+        try {
+            timer.cancel()
+        } catch (e: Exception) {}
     }
 
     override fun showSummary() {
@@ -138,7 +144,7 @@ class NapFragment : Fragment(), NapContract.View {
         startActivity(intent)
     }
 
-    private fun onTimerFinished() {
+    override fun onTimerFinished() {
         timerState = NapState.Stopped
 
         setNewTimerLength()
