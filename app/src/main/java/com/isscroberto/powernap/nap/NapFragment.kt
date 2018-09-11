@@ -80,6 +80,12 @@ class NapFragment : Fragment(), NapContract.View {
         text_start.setOnClickListener(View.OnClickListener {
             startTimer(0)
         })
+
+        layout_summary.setOnClickListener(View.OnClickListener {
+            val intent = Intent(context, StartActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(intent)
+        })
     }
 
     override fun initTimer() {
