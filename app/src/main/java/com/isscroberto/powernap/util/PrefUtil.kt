@@ -23,6 +23,12 @@ class PrefUtil {
             }
         }
 
+        fun getNapType(context: Context): NapType {
+            val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+            val napType: NapType = NapType.fromInt(preferences.getInt(NAP_TYPE, 0)) as NapType
+            return napType
+        }
+
         private const val NAP_TYPE = "com.isscroberto.powernap.nap_type";
 
         fun setNapType(napType: NapType, context: Context) {

@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nap_fragment_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".nap.NapFragment">
+    tools:context=".nap.NapFragment"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/text_instruction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/text_countdown"
+        android:text="Take a few minutes to drink your coffee as fast as you can and start your nap as soon as you finish."
+        android:textAlignment="center"
+        android:textAppearance="@style/Headline"
+        android:textColor="@color/white"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/text_countdown"

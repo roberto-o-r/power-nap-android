@@ -30,6 +30,9 @@ import java.util.*
  */
 class NapFragment : Fragment(), NapContract.View {
 
+    // TODO: Add sound to finish.
+    // TODO: Add advertising.
+
     override lateinit var presenter: NapContract.Presenter
 
     private lateinit var timer: CountDownTimer
@@ -86,6 +89,28 @@ class NapFragment : Fragment(), NapContract.View {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
             startActivity(intent)
         })
+
+        // Set UI according to Nap.
+        var napType = PrefUtil.getNapType(context)
+        when(napType) {
+            NapType.NAP_TYPE_POWER -> {
+                nap_fragment_content.setBackgroundColor(resources.getColor(R.color.power))
+                layout_summary.setBackgroundColor(resources.getColor(R.color.power))
+            }
+            NapType.NAP_TYPE_REFRESH -> {
+                nap_fragment_content.setBackgroundColor(resources.getColor(R.color.refresh))
+                layout_summary.setBackgroundColor(resources.getColor(R.color.refresh))
+            }
+            NapType.NAP_TYPE_RECHARGE -> {
+                nap_fragment_content.setBackgroundColor(resources.getColor(R.color.recharge))
+                layout_summary.setBackgroundColor(resources.getColor(R.color.recharge))
+            }
+            NapType.NAP_TYPE_COFFEE -> {
+                text_instruction.visibility = View.VISIBLE
+                nap_fragment_content.setBackgroundColor(resources.getColor(R.color.coffee))
+                layout_summary.setBackgroundColor(resources.getColor(R.color.coffee))
+            }
+        }
     }
 
     override fun initTimer() {
