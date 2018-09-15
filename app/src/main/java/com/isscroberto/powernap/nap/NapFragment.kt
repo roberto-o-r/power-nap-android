@@ -5,7 +5,6 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.opengl.Visibility
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.support.transition.TransitionManager
@@ -19,18 +18,21 @@ import com.isscroberto.powernap.TimerExpiredReceiver
 import com.isscroberto.powernap.data.NapState
 import com.isscroberto.powernap.data.NapType
 import com.isscroberto.powernap.start.StartActivity
+import com.isscroberto.powernap.util.AlarmService
 import com.isscroberto.powernap.util.NotificationUtil
 import com.isscroberto.powernap.util.PrefUtil
 import kotlinx.android.synthetic.main.fragment_nap.*
-import kotlinx.android.synthetic.main.fragment_setup.*
 import java.util.*
+import android.app.ActivityManager
+
+
 
 /**
  * Nap fragment view.
  */
 class NapFragment : Fragment(), NapContract.View {
 
-    // TODO: Add sound to finish.
+    // TODO: Add feedback.
     // TODO: Add advertising.
 
     override lateinit var presenter: NapContract.Presenter
@@ -85,9 +87,7 @@ class NapFragment : Fragment(), NapContract.View {
         })
 
         layout_summary.setOnClickListener(View.OnClickListener {
-            val intent = Intent(context, StartActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            startActivity(intent)
+            showStart()
         })
 
         // Set UI according to Nap.
@@ -95,20 +95,16 @@ class NapFragment : Fragment(), NapContract.View {
         when(napType) {
             NapType.NAP_TYPE_POWER -> {
                 nap_fragment_content.setBackgroundColor(resources.getColor(R.color.power))
-                layout_summary.setBackgroundColor(resources.getColor(R.color.power))
             }
             NapType.NAP_TYPE_REFRESH -> {
                 nap_fragment_content.setBackgroundColor(resources.getColor(R.color.refresh))
-                layout_summary.setBackgroundColor(resources.getColor(R.color.refresh))
             }
             NapType.NAP_TYPE_RECHARGE -> {
                 nap_fragment_content.setBackgroundColor(resources.getColor(R.color.recharge))
-                layout_summary.setBackgroundColor(resources.getColor(R.color.recharge))
             }
             NapType.NAP_TYPE_COFFEE -> {
                 text_instruction.visibility = View.VISIBLE
                 nap_fragment_content.setBackgroundColor(resources.getColor(R.color.coffee))
-                layout_summary.setBackgroundColor(resources.getColor(R.color.coffee))
             }
         }
     }
@@ -132,8 +128,10 @@ class NapFragment : Fragment(), NapContract.View {
             secondsRemaining -= nowSeconds - alarmSetTime
         }
 
-        if(timerState == NapState.Finished)
+        if(timerState == NapState.Finished) {
+            // Finish nap.
             onTimerFinished()
+        }
         else {
             if (timerState == NapState.Running)
                 startTimer(0)
@@ -171,20 +169,24 @@ class NapFragment : Fragment(), NapContract.View {
     }
 
     override fun showStart() {
+        // Stop alarm.
+        context.stopService(Intent(context, AlarmService::class.java))
+
         val intent = Intent(context, StartActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
         startActivity(intent)
     }
 
     override fun onTimerFinished() {
-        timerState = NapState.Stopped
+        // Set state of nap as finished.
+        timerState = NapState.Finished
 
-        setNewTimerLength()
+        // Play alarm sound if not playing already.
+        if(!serviceRunning(AlarmService::class.java)) {
+            context.startService(Intent(context, AlarmService::class.java))
+        }
 
-        PrefUtil.setSecondsRemaining(timerLengthSeconds, context)
-        secondsRemaining = timerLengthSeconds
-
-        updateCountdownUI()
-
+        // Trigger nap stop.
         presenter.stopNap()
     }
 
@@ -205,6 +207,16 @@ class NapFragment : Fragment(), NapContract.View {
         val minutes = (milliseconds / 1000 / 60).toString()
         val seconds = (milliseconds / 1000 % 60).toString()
         return minutes.padStart(2, '0') + ":" + seconds.padStart(2, '0')
+    }
+
+    private fun serviceRunning(serviceClass: Class<*>): Boolean {
+        val manager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        for (service in manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.name == service.service.className) {
+                return true
+            }
+        }
+        return false
     }
 
     companion object {

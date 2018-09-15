@@ -27,6 +27,8 @@
         </activity>
         <activity android:name=".nap.NapActivity" />
 
+        <service android:name=".util.AlarmService"/>
+
         <receiver
             android:name=".TimerExpiredReceiver"
             android:enabled="true"
