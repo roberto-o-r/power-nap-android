@@ -32,7 +32,6 @@ import android.app.ActivityManager
  */
 class NapFragment : Fragment(), NapContract.View {
 
-    // TODO: Add feedback.
     // TODO: Add advertising.
 
     override lateinit var presenter: NapContract.Presenter
@@ -52,8 +51,8 @@ class NapFragment : Fragment(), NapContract.View {
         initTimer()
 
         // The app is in focus, remove the alarm and notification if exists.
-        removeAlarm(context)
-        NotificationUtil.hideTimerNotification(context)
+        removeAlarm(context!!)
+        NotificationUtil.hideTimerNotification(context!!)
     }
 
     override fun onPause() {
@@ -64,14 +63,14 @@ class NapFragment : Fragment(), NapContract.View {
             // Cancerl de timer.
             timer.cancel()
             // Set the alarm and notification.
-            val wakeUpTime = setAlarm(context, nowSeconds, secondsRemaining)
-            NotificationUtil.showTimerRunning(context, wakeUpTime)
+            val wakeUpTime = setAlarm(context!!, nowSeconds, secondsRemaining)
+            NotificationUtil.showTimerRunning(context!!, wakeUpTime)
         }
 
         // Save settings and time status.
-        PrefUtil.setPreviousTimerLengthSeconds(timerLengthSeconds, context)
-        PrefUtil.setSecondsRemaining(secondsRemaining, context)
-        PrefUtil.setTimerState(timerState, context)
+        PrefUtil.setPreviousTimerLengthSeconds(timerLengthSeconds, context!!)
+        PrefUtil.setSecondsRemaining(secondsRemaining, context!!)
+        PrefUtil.setTimerState(timerState, context!!)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -79,8 +78,8 @@ class NapFragment : Fragment(), NapContract.View {
         return inflater.inflate(R.layout.fragment_nap, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view!!, savedInstanceState)
 
         text_start.setOnClickListener(View.OnClickListener {
             startTimer(0)
@@ -91,7 +90,7 @@ class NapFragment : Fragment(), NapContract.View {
         })
 
         // Set UI according to Nap.
-        var napType = PrefUtil.getNapType(context)
+        var napType = PrefUtil.getNapType(context!!)
         when(napType) {
             NapType.NAP_TYPE_POWER -> {
                 nap_fragment_content.setBackgroundColor(resources.getColor(R.color.power))
@@ -110,7 +109,7 @@ class NapFragment : Fragment(), NapContract.View {
     }
 
     override fun initTimer() {
-        timerState = PrefUtil.getTimerState(context)
+        timerState = PrefUtil.getTimerState(context!!)
 
         if(timerState == NapState.Stopped) {
             setNewTimerLength()
@@ -119,11 +118,11 @@ class NapFragment : Fragment(), NapContract.View {
         }
 
         secondsRemaining = if(timerState == NapState.Running)
-            PrefUtil.getSecondsRemaining(context)
+            PrefUtil.getSecondsRemaining(context!!)
         else
             timerLengthSeconds
 
-        val alarmSetTime = PrefUtil.getAlarmSetTime(context)
+        val alarmSetTime = PrefUtil.getAlarmSetTime(context!!)
         if(alarmSetTime > 0) {
             secondsRemaining -= nowSeconds - alarmSetTime
         }
@@ -170,9 +169,9 @@ class NapFragment : Fragment(), NapContract.View {
 
     override fun showStart() {
         // Stop alarm.
-        context.stopService(Intent(context, AlarmService::class.java))
+        context!!.stopService(Intent(context!!, AlarmService::class.java))
 
-        val intent = Intent(context, StartActivity::class.java)
+        val intent = Intent(context!!, StartActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
         startActivity(intent)
     }
@@ -183,7 +182,7 @@ class NapFragment : Fragment(), NapContract.View {
 
         // Play alarm sound if not playing already.
         if(!serviceRunning(AlarmService::class.java)) {
-            context.startService(Intent(context, AlarmService::class.java))
+            context!!.startService(Intent(context!!, AlarmService::class.java))
         }
 
         // Trigger nap stop.
@@ -191,12 +190,12 @@ class NapFragment : Fragment(), NapContract.View {
     }
 
     private fun setNewTimerLength() {
-        val lengthInMinutes = PrefUtil.getTimerLength(context)
+        val lengthInMinutes = PrefUtil.getTimerLength(context!!)
         timerLengthSeconds = (lengthInMinutes * 60L)
     }
 
     private fun setPreviousTimerLength() {
-        timerLengthSeconds = PrefUtil.getPreviousTimerLengthSeconds(context)
+        timerLengthSeconds = PrefUtil.getPreviousTimerLengthSeconds(context!!)
     }
 
     private fun updateCountdownUI() {
@@ -210,7 +209,7 @@ class NapFragment : Fragment(), NapContract.View {
     }
 
     private fun serviceRunning(serviceClass: Class<*>): Boolean {
-        val manager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val manager = context!!.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         for (service in manager.getRunningServices(Integer.MAX_VALUE)) {
             if (serviceClass.name == service.service.className) {
                 return true
@@ -226,22 +225,22 @@ class NapFragment : Fragment(), NapContract.View {
 
         fun setAlarm(context: Context, nowSeconds: Long, secondsRemaining: Long): Long {
             val wakeUpTime = (nowSeconds + secondsRemaining) * 1000
-            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            val intent = Intent(context, TimerExpiredReceiver::class.java)
-            val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
+            val alarmManager = context!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            val intent = Intent(context!!, TimerExpiredReceiver::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(context!!, 0, intent, 0)
 
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, wakeUpTime, pendingIntent)
-            PrefUtil.setAlarmSetTime(nowSeconds, context)
+            PrefUtil.setAlarmSetTime(nowSeconds, context!!)
             return wakeUpTime
         }
 
         fun removeAlarm(context: Context) {
-            val intent = Intent(context, TimerExpiredReceiver::class.java)
-            val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
-            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            val intent = Intent(context!!, TimerExpiredReceiver::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(context!!, 0, intent, 0)
+            val alarmManager = context!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
             alarmManager.cancel(pendingIntent)
-            PrefUtil.setAlarmSetTime(0, context)
+            PrefUtil.setAlarmSetTime(0, context!!)
         }
 
         val nowSeconds: Long

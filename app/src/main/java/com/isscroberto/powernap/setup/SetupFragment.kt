@@ -33,7 +33,7 @@ class SetupFragment : Fragment(), SetupContract.View {
         return inflater.inflate(R.layout.fragment_setup, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // Set click listeners for nap types.
@@ -72,33 +72,33 @@ class SetupFragment : Fragment(), SetupContract.View {
         // Click listeners for nap type selections.
         button_power.setOnClickListener(View.OnClickListener {
             // Save nap in preferences.
-            PrefUtil.setNapType(presenter.napType, context);
+            PrefUtil.setNapType(presenter.napType, context!!);
 
-            val intent = Intent(context, NapActivity::class.java)
+            val intent = Intent(context!!, NapActivity::class.java)
             startActivity(intent)
         })
 
         button_refresh.setOnClickListener(View.OnClickListener {
             // Save nap in preferences.
-            PrefUtil.setNapType(presenter.napType, context);
+            PrefUtil.setNapType(presenter.napType, context!!);
 
-            val intent = Intent(context, NapActivity::class.java)
+            val intent = Intent(context!!, NapActivity::class.java)
             startActivity(intent)
         })
 
         button_recharge.setOnClickListener(View.OnClickListener {
             // Save nap in preferences.
-            PrefUtil.setNapType(presenter.napType, context);
+            PrefUtil.setNapType(presenter.napType, context!!);
 
-            val intent = Intent(context, NapActivity::class.java)
+            val intent = Intent(context!!, NapActivity::class.java)
             startActivity(intent)
         })
 
         button_coffee.setOnClickListener(View.OnClickListener {
             // Save nap in preferences.
-            PrefUtil.setNapType(presenter.napType, context);
+            PrefUtil.setNapType(presenter.napType, context!!);
 
-            val intent = Intent(context, NapActivity::class.java)
+            val intent = Intent(context!!, NapActivity::class.java)
             startActivity(intent)
         })
     }

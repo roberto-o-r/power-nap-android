@@ -31,7 +31,7 @@ class StartFragment : Fragment(), StartContract.View {
         return inflater.inflate(R.layout.fragment_start, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         view_nap.setOnClickListener(View.OnClickListener {

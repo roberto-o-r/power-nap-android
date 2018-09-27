@@ -3,6 +3,10 @@ package com.isscroberto.powernap.start
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.isscroberto.powernap.R
+import com.github.stkent.amplify.tracking.Amplify
+import com.github.stkent.amplify.prompt.DefaultLayoutPromptView
+import kotlinx.android.synthetic.main.activity_start.*
+
 
 class StartActivity : AppCompatActivity() {
 
@@ -16,6 +20,12 @@ class StartActivity : AppCompatActivity() {
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.contentFrame, it)
             transaction.commit()
+        }
+
+        // Feedback.
+        if (savedInstanceState == null) {
+            var promptView = prompt_view as DefaultLayoutPromptView
+            Amplify.getSharedInstance().promptIfReady(promptView)
         }
 
         // Create the presenter
