@@ -27,10 +27,11 @@ class NotificationUtil {
         private const val TIMER_ID = 0
 
         fun showTimerExpired(context: Context) {
-            val nBuilder = getBasicNotificationBuilder(context, CHANNEL_ID_TIMER, true)
+            val nBuilder = getBasicNotificationBuilder(context, CHANNEL_ID_TIMER, false)
             nBuilder.setContentTitle("Nap Finished")
                     .setContentText("Enjoy the Power!")
                     .setContentIntent(getPendingIntentWithStack(context, NapActivity::class.java))
+                    .setOngoing(true)
 
             val nManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             nManager.createNotificationChannel(CHANNEL_ID_TIMER, CHANNEL_NAME_TIMER, true)
@@ -41,22 +42,9 @@ class NotificationUtil {
         fun showTimerRunning(context: Context, wakeUpTime: Long) {
             val df = SimpleDateFormat.getTimeInstance(SimpleDateFormat.SHORT)
 
-            val nBuilder = getBasicNotificationBuilder(context, CHANNEL_ID_TIMER, true)
+            val nBuilder = getBasicNotificationBuilder(context, CHANNEL_ID_TIMER, false)
             nBuilder.setContentTitle("Timer is Running.")
                     .setContentText("End: ${df.format(Date(wakeUpTime))}")
-                    .setContentIntent(getPendingIntentWithStack(context, NapActivity::class.java))
-                    .setOngoing(true)
-
-            val nManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            nManager.createNotificationChannel(CHANNEL_ID_TIMER, CHANNEL_NAME_TIMER, true)
-
-            nManager.notify(TIMER_ID, nBuilder.build())
-        }
-
-        fun showTimerPaused(context: Context){
-            val nBuilder = getBasicNotificationBuilder(context, CHANNEL_ID_TIMER, true)
-            nBuilder.setContentTitle("Timer is paused.")
-                    .setContentText("Resume?")
                     .setContentIntent(getPendingIntentWithStack(context, NapActivity::class.java))
                     .setOngoing(true)
 
