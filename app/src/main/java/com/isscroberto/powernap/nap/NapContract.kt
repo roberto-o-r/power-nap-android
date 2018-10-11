@@ -17,7 +17,7 @@ interface NapContract {
 
         fun showStart()
 
-        fun onTimerFinished()
+        fun onTimerFinished(alarm: Boolean)
 
     }
 

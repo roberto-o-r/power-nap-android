@@ -28,7 +28,7 @@ class NapActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
 
-        napFragment.onTimerFinished()
+        napFragment.onTimerFinished(false)
     }
 
 }

@@ -129,7 +129,7 @@ class NapFragment : Fragment(), NapContract.View {
 
         if(timerState == NapState.Finished) {
             // Finish nap.
-            onTimerFinished()
+            onTimerFinished(true)
         }
         else {
             if (timerState == NapState.Running)
@@ -145,7 +145,7 @@ class NapFragment : Fragment(), NapContract.View {
 
         timer = object : CountDownTimer(secondsRemaining * 1000, 1000) {
             override fun onFinish() {
-                onTimerFinished()
+                onTimerFinished(true)
             }
 
             override fun onTick(millisUntilFinished: Long) {
@@ -176,12 +176,12 @@ class NapFragment : Fragment(), NapContract.View {
         startActivity(intent)
     }
 
-    override fun onTimerFinished() {
+    override fun onTimerFinished(alarm: Boolean) {
         // Set state of nap as finished.
         timerState = NapState.Finished
 
         // Play alarm sound if not playing already.
-        if(!serviceRunning(AlarmService::class.java)) {
+        if(!serviceRunning(AlarmService::class.java) && alarm) {
             context!!.startService(Intent(context!!, AlarmService::class.java))
         }
 
